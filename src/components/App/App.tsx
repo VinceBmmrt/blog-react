@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="app">
-      <Header />
+      <Header categories={categoriesData} />
       <Posts />
       <Footer />
     </div>
