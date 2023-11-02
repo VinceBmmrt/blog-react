@@ -17,7 +17,7 @@
     font-family: v.$font-title;
     font-size: 1.3125em;
     font-weight: v.$font-title-weight;
-    margin-bottom: v.$gutter * .25;
+    margin-bottom: v.$gutter * 0.25;
     text-transform: uppercase;
   }
 
@@ -28,12 +28,19 @@
     font-size: 0.8125em;
     height: v.$gutter * 1.5;
     line-height: v.$gutter * 1.5;
-    margin-bottom: v.$gutter * .25;
-    padding: 0 .5rem;
+    margin-bottom: v.$gutter * 0.25;
+    padding: 0 0.5rem;
     text-transform: uppercase;
   }
 
   &-excerpt {
     color: v.$color;
+  }
+}
+
+.app--zen-mode {
+  .post {
+    width: 100%;
+    font-size: 1.5rem;
   }
 }

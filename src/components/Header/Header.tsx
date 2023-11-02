@@ -1,10 +1,16 @@
 import { Category } from '../../@types/post';
 import './Header.scss';
 
+// type SetterState<T> = React.Dispatch<React.SetStateAction<T>>;
+
 type HeaderProps = {
   categories: Category[];
+  zenMode: boolean;
+  // Le vrai type d'une fonction de setter d'un useState ressemble à ça :
+  // setZenMode: (zenMode: boolean | ((oldValue: boolean) => boolean)) => void;
+  setZenMode: React.Dispatch<React.SetStateAction<boolean>>;
 };
-function Header({ categories }: HeaderProps) {
+function Header({ categories, zenMode, setZenMode }: HeaderProps) {
   return (
     <header className="menu" id="header">
       <nav className="menu-nav">
@@ -20,8 +26,12 @@ function Header({ categories }: HeaderProps) {
             {category.name}
           </a>
         ))}
-        <button className="menu-btn" type="button">
-          Activer le mode zen
+        <button
+          className="menu-btn"
+          type="button"
+          onClick={() => setZenMode((active) => !active)}
+        >
+          {zenMode ? 'Désactiver ' : 'Activer '}le mode zen
         </button>
       </nav>
     </header>
