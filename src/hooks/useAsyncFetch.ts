@@ -2,9 +2,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-export const useAsyncFetch = (url: string) => {
+export const useAsyncFetch = <TData>(url: string) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState<any>();
+  const [data, setData] = useState<TData>();
 
   // But :
   // Au chargement de ma page, je veux aller récupérer les données conernant les posts depuis un API
