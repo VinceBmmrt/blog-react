@@ -1,10 +1,5 @@
+import { Category } from '../../@types/post';
 import './Header.scss';
-
-type Category = {
-  id: number;
-  slug: string;
-  name: string;
-};
 
 type HeaderProps = {
   categories: Category[];
