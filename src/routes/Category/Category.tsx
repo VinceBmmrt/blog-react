@@ -14,9 +14,19 @@ function Category() {
   }
 
   // J'utilise le slug pour récupérer les posts de la catégorie depuis mon API
-  const { data: posts, isLoading } = useAsyncFetch<Post[]>(
+  const {
+    data: posts,
+    isLoading,
+    error,
+  } = useAsyncFetch<Post[]>(
     `https://oblog-react.vercel.app/api/posts?categorySlug=${slug}`
   );
+
+  // Si l'API nous renvoie une erreur, on va déclencher une erreur dans notre application
+  // Cela permettra d'afficher le composant définis sur notre router pour les erreur
+  if (error) {
+    throw error;
+  }
 
   return <main>{isLoading ? <Spinner /> : <Posts posts={posts || []} />}</main>;
 }

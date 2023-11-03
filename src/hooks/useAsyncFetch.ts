@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 export const useAsyncFetch = <TData>(url: string) => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<TData>();
+  const [error, setError] = useState<Error>();
 
   // But :
   // Au chargement de ma page, je veux aller récupérer les données conernant les posts depuis un API
@@ -14,6 +15,8 @@ export const useAsyncFetch = <TData>(url: string) => {
     // Je vais modifier la variable isLoading pour indiquer que je vais charger des données
     // ça me permettra d'afficher un spinner de chargement côté JSX
     setIsLoading(true);
+    // Avant d'appeler l'API, je retire l'erreur
+    setError(undefined);
     // Pour appeler on va utiliser axios. J'appel mon `URL` en `GET`
     axios
       .get(url)
@@ -23,11 +26,14 @@ export const useAsyncFetch = <TData>(url: string) => {
         // Je modifier ma variable posts
         setData(response.data);
       })
+      .catch((err) => {
+        setError(err);
+      })
       .finally(() => {
         // Dans tous les cas (success ou error), j'arrête mon loader
         setIsLoading(false);
       });
   }, [url]);
 
-  return { isLoading, data };
+  return { isLoading, data, error };
 };
