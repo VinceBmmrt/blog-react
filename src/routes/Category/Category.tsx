@@ -18,12 +18,7 @@ function Category() {
     `https://oblog-react.vercel.app/api/posts?categorySlug=${slug}`
   );
 
-  return (
-    <main>
-      {isLoading && <Spinner />}
-      <Posts posts={posts || []} />
-    </main>
-  );
+  return <main>{isLoading ? <Spinner /> : <Posts posts={posts || []} />}</main>;
 }
 
 export default Category;

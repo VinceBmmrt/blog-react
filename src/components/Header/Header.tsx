@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Category } from '../../@types/post';
 import './Header.scss';
 
@@ -14,17 +15,17 @@ function Header({ categories, zenMode, setZenMode }: HeaderProps) {
   return (
     <header className="menu" id="header">
       <nav className="menu-nav">
-        <a className="menu-link menu-link--selected" href="#header">
+        <Link className="menu-link menu-link--selected" to="/">
           Accueil
-        </a>
+        </Link>
         {categories.map((category) => (
-          <a
+          <Link
             className="menu-link"
-            href={`/category/${category.slug}`}
+            to={`/category/${category.slug}`}
             key={category.id}
           >
             {category.name}
-          </a>
+          </Link>
         ))}
         <button
           className="menu-btn"
