@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Category } from '../../@types/post';
 import './Header.scss';
 
@@ -15,17 +15,29 @@ function Header({ categories, zenMode, setZenMode }: HeaderProps) {
   return (
     <header className="menu" id="header">
       <nav className="menu-nav">
-        <Link className="menu-link menu-link--selected" to="/">
+        <NavLink
+          // La particularité du NavLink est que l'on peut lui passer une fonction dans className (dans style également)
+          // Cette fonction nous permettra de récupérer l'information si le lien est actif ou non
+          // lien actif === l'url actuel correspond a la propriété `to` du NavLink
+          // Cette information sera situer dans l'objet en paramètre
+          // Cette fonction doit retourner une chaine de caractère correspondant à la classe CSS à appliquer
+          className={({ isActive }) =>
+            `menu-link ${isActive ? 'menu-link--selected' : ''}`
+          }
+          to="/"
+        >
           Accueil
-        </Link>
+        </NavLink>
         {categories.map((category) => (
-          <Link
-            className="menu-link"
+          <NavLink
+            className={({ isActive }) =>
+              `menu-link ${isActive ? 'menu-link--selected' : ''}`
+            }
             to={`/category/${category.slug}`}
             key={category.id}
           >
             {category.name}
-          </Link>
+          </NavLink>
         ))}
         <button
           className="menu-btn"
