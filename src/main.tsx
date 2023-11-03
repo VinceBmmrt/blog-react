@@ -12,4 +12,6 @@ const root = ReactDOM.createRoot(
 );
 
 // On injecte notre application dans le DOM
+// Ici on va utiliser le RouterProvider pour aiguiller notre application en fonction de l'url
+// Chaque url correspondra à un composant définis dans le `router`
 root.render(<RouterProvider router={router} />);
