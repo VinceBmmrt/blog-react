@@ -8,6 +8,7 @@ import './App.scss';
 import Spinner from '../Spinner/Spinner';
 import { Category, Post } from '../../@types/post';
 import { useAsyncFetch } from '../../hooks/useAsyncFetch';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   const [zenMode, setZenMode] = useState(false);
@@ -28,8 +29,10 @@ function App() {
         zenMode={zenMode}
         setZenMode={setZenMode}
       />
-      {isLoading && <Spinner />}
-      <Posts posts={posts || []} />
+      {/* Outlet permet d'afficher les éléments des routes enfants */}
+      <Outlet />
+      {/* {isLoading && <Spinner />}
+      <Posts posts={posts || []} /> */}
       <Footer />
     </div>
   );
